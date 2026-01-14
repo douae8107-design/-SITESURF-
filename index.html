@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>École de Surf Maroc</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- En-tête du site -->
+    <header>
+        <h1>🏄‍♂️ École de Surf Marocaine "Al Mouj"</h1>
+        <p>Apprenez à surfer avec des professionnels certifiés | Tarifs en Dirhams Marocains (DH)</p>
+    </header>
+
+    <!-- Section Hero avec image principale -->
+    <section class="hero-section">
+        <div class="hero-text">
+            <h2>🌊 Vivez l'expérience surf au Maroc !</h2>
+            <p>Des vagues magnifiques, des moniteurs diplômés, du matériel de qualité</p>
+        </div>
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
+                 alt="Surfeur professionnel sur une vague au Maroc"
+                 class="main-surf-image">
+            <p class="image-description">Notre école à Taghazout, Agadir - Maroc</p>
+        </div>
+    </section>
+
+    <!-- Section à propos avec image secondaire -->
+    <section class="about-section">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>🏫 Notre École de Surf</h2>
+                <p>Fondée en 2010, notre école est située sur la célèbre plage de Taghazout, réputée pour ses vagues parfaites toute l'année.</p>
+                <ul>
+                    <li>✅ Moniteurs diplômés d'État</li>
+                    <li>✅ Matériel récent et entretenu</li>
+                    <li>✅ Cours pour tous les niveaux</li>
+                    <li>✅ Assurance incluse</li>
+                    <li>✅ Photos souvenirs offertes</li>
+                </ul>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1511994717241-8e4e484dfa8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                     alt="Cours de surf collectif"
+                     class="school-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie d'images -->
+    <section class="gallery-section">
+        <h2>📸 Notre École en Images</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" 
+                     alt="Moniteur avec élèves">
+                <p>Moniteur certifié</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" 
+                     alt="Matériel de surf">
+                <p>Matériel professionnel</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519677100203-5c99773c8d71?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" 
+                     alt="Plage de Taghazout">
+                <p>Plage de Taghazout</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulaire de réservation -->
+    <main>
+        <section class="reservation-section">
+            <h2>📅 Réserver un cours de surf</h2>
+            
+            <form id="reservationForm">
+                <div class="form-group">
+                    <label for="clientName">Votre nom complet :</label>
+                    <input type="text" id="clientName" placeholder="Ex: Karim Alami" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientEmail">Votre email :</label>
+                    <input type="email" id="clientEmail" placeholder="exemple@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="courseType">Type de cours :</label>
+                    <select id="courseType" required>
+                        <option value="">-- Choisissez votre cours --</option>
+                        <option value="débutant">🎯 Cours Débutant - 1,000 DH</option>
+                        <option value="intermédiaire">⚡ Cours Intermédiaire - 1,500 DH</option>
+                        <option value="prive">👑 Cours Privé - 3,000 DH</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="courseDate">Date souhaitée :</label>
+                    <input type="date" id="courseDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="participants">Nombre de personnes :</label>
+                    <input type="number" id="participants" min="1" max="10" value="1" required>
+                    <small class="note">Prix par personne</small>
+                </div>
+
+                <div class="price-preview">
+                    <h3>💵 Estimation du prix :</h3>
+                    <p id="priceEstimation">Sélectionnez un cours pour voir le prix</p>
+                </div>
+
+                <button type="button" onclick="processReservation()" class="reserve-btn">
+                    📝 Confirmer la réservation
+                </button>
+            </form>
+        </section>
+
+        <!-- Confirmation de réservation -->
+        <div id="confirmationMessage" class="confirmation-hidden">
+            <div class="confirmation-box">
+                <h3>✅ Réservation confirmée !</h3>
+                <div id="reservationDetails"></div>
+                <div id="totalPrice"></div>
+                <div class="confirmation-info">
+                    <p>📧 Un email de confirmation vous sera envoyé.</p>
+                    <p>💰 Paiement sur place en espèces ou par carte.</p>
+                </div>
+                <button onclick="closeConfirmation()" class="close-btn">Fermer</button>
+            </div>
+        </div>
+
+        <!-- Liste des réservations -->
+        <section class="bookings-section">
+            <h2>📋 Mes réservations</h2>
+            <div id="bookingsList">
+                <p class="no-bookings">Aucune réservation pour le moment.</p>
+            </div>
+            
+            <div class="bookings-actions">
+                <button onclick="showAllBookings()" class="action-btn">
+                    📋 Voir toutes mes réservations
+                </button>
+                <button onclick="exportBookings()" class="action-btn">
+                    📥 Télécharger la liste
+                </button>
+            </div>
+            
+            <div class="stats-box">
+                <h3>📊 Statistiques</h3>
+                <p>Total réservations : <span id="totalBookings">0</span></p>
+                <p>Montant total : <span id="totalAmount">0 DH</span></p>
+            </div>
+        </section>
+
+        <!-- Tarifs détaillés -->
+        <section class="pricing-section">
+            <h2>💰 Nos Tarifs Détailés</h2>
+            <div class="pricing-cards">
+                <div class="price-card beginner">
+                    <div class="card-header">
+                        <h3>🎯 Débutant</h3>
+                        <div class="price-tag">1,000 DH</div>
+                    </div>
+                    <ul>
+                        <li>✅ 2 heures de cours</li>
+                        <li>✅ Planche et combinaison incluses</li>
+                        <li>✅ Moniteur diplômé</li>
+                        <li>✅ Initiation à la sécurité</li>
+                        <li>✅ Certificat de participation</li>
+                    </ul>
+                    <button class="select-btn" onclick="selectCourse('débutant')">
+                        Choisir ce cours
+                    </button>
+                </div>
+
+                <div class="price-card intermediate">
+                    <div class="card-header">
+                        <h3>⚡ Intermédiaire</h3>
+                        <div class="price-tag">1,500 DH</div>
+                    </div>
+                    <ul>
+                        <li>✅ 3 heures de cours</li>
+                        <li>✅ Matériel professionnel</li>
+                        <li>✅ Analyse vidéo des techniques</li>
+                        <li>✅ Coaching personnalisé</li>
+                        <li>✅ Goûter marocain inclus</li>
+                    </ul>
+                    <button class="select-btn" onclick="selectCourse('intermédiaire')">
+                        Choisir ce cours
+                    </button>
+                </div>
+
+                <div class="price-card private">
+                    <div class="card-header">
+                        <h3>👑 Cours Privé</h3>
+                        <div class="price-tag">3,000 DH</div>
+                    </div>
+                    <ul>
+                        <li>✅ 4 heures personnalisées</li>
+                        <li>✅ Moniteur exclusif</li>
+                        <li>✅ Photos professionnelles</li>
+                        <li>✅ Transport depuis l'hôtel</li>
+                        <li>✅ Pack souvenirs offert</li>
+                    </ul>
+                    <button class="select-btn" onclick="selectCourse('prive')">
+                        Choisir ce cours
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>📞 Contact</h3>
+                <p><strong>Téléphone :</strong> +212 6 12 34 56 78</p>
+                <p><strong>Email :</strong> info@surfmaroc.ma</p>
+                <p><strong>Adresse :</strong> Plage de Taghazout, Agadir, Maroc</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>⏰ Horaires</h3>
+                <p><strong>Lundi - Vendredi :</strong> 8h - 19h</p>
+                <p><strong>Samedi - Dimanche :</strong> 7h - 20h</p>
+                <p><strong>Période estivale :</strong> 7j/7 de 7h à 21h</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>📍 Nous trouver</h3>
+                <div class="map-placeholder">
+                    <p>📍 Taghazout Beach</p>
+                    <p>🌍 30°32'N, 9°41'W</p>
+                    <p>🚗 Parking gratuit sur place</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2024 École de Surf Marocaine "Al Mouj" - Tous droits réservés</p>
+            <p>🏄‍♂️ Surfons ensemble vers l'aventure ! | Prix en Dirhams Marocains (DH)</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
